@@ -17,19 +17,23 @@ class ViewController: UIViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         //TODO: Set the datasource & delegate
-        
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
         // Customization
         collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = .white
         
         //TODO: Register the cell
-        
+        collectionView.register(Cell.self, forCellWithReuseIdentifier: Cell.identifier)
         
         return collectionView
     }()
     
-    var data: [String] = Array(repeating: "🦕", count: 10)
+    var data: [String] = ["0"];
+    for index in 1...19 {
+        data.append("\(index)") //Array(repeating: "🦕", count: 10)
+    }
     
     override func loadView() {
         super.loadView()
@@ -117,7 +121,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 20, height: 20)
+        return CGSize(width: 120, height: 120)
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -135,7 +139,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 50
     }
     
 }
